@@ -1,3 +1,7 @@
+*::-webkit-scrollbar {
+  display: none;
+}
+
 .side-bar {
   box-sizing: border-box;
   color: $white;
@@ -29,6 +33,8 @@
     background-color: $side_blue_light;
     height: calc(100vh - 100px);
     padding: 0 20px;
+    overflow: scroll;
+    width: 87%;
     .group {
       box-sizing: border-box;
       padding: 20px 0 40px;
