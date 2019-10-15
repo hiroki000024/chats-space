@@ -64,12 +64,9 @@ $(document).on('turbolinks:load', function(){
   });
   
   $(document).on("click", '.user-search-add', function () {
-    console.log("ok")
       var name = $(this).data("user-name");
       var user_id = $(this).data("user-id");
       $(this).parent().remove();
-      //appendUsers(name, user_id);
-      console.log(name)
       appendMembers(name,user_id);
 
     });
