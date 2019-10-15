@@ -1,5 +1,6 @@
 .chat-group-form
   %h1 新規チャットグループ
+  
   = form_for @group do |f|
     - if @group.errors.any?
       .chat-group-form__errors
@@ -24,18 +25,19 @@
       .chat-group-form-__field.crearfix
         .chat-group-form__field--left
           = f.label :user_ids, "チャットメンバー", class: 'chat-group-form__label'
-
         .chat-group-form__field--right
-          #chat-group-users
-            - @group.users.each do |user|
+          - @group.users.each do |user|
+            #chat-group-users
               #chat-group-user-8.chat-group-user.clearfix.js-chat-member
                 %input{name: 'group[user_ids][]', type: 'hidden', value: "#{ user.id }"}
                 %p.chat-group-user__name
                   = user.name
                 %p.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
-              #member_search_result
-    
+          #member_append
+          
+
+
       .chat-group-form__field.clearfix
-      .chat-group-form__field--left
-      .chat-group-form__field--right
-        = f.submit class: 'chat-group-form__action-btn'
+        .chat-group-form__field--left
+        .chat-group-form__field--right
+          = f.submit class: 'chat-group-form__action-btn'
