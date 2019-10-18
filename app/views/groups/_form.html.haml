@@ -1,4 +1,4 @@
-= form_for group do |f|
+= form_for group,{id: group.id} do |f|
   - if group.errors.any?
     .chat-group-form__errors
       %h2= "#{group.errors.full_messages.count}件のエラーが発生しました。"
@@ -23,11 +23,8 @@
           %input{name: 'group[user_ids][]', type: 'hidden', value: "#{ user.id }"}
           %p.chat-group-user__name
             = user.name
+        #member_append    
           %p.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
-      #member_append    
-      / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
-      /= f.collection_check_boxes :user_ids, User.all, :id, :name
-      / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right

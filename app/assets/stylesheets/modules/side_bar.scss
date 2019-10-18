@@ -3,13 +3,12 @@
 }
 
 .side-bar {
-  position: relative;
   box-sizing: border-box;
   color: $white;
   width: 300px;
   .header {
     background-color: $side_blue_dark;
-    height: 100px;
+    height: 102px;
     line-height: 100px;
     padding: 0 20px;
     &__name {
@@ -31,8 +30,6 @@
   }
 
   .groups {
-    position: absolute;
-    top:100px;
     background-color: $side_blue_light;
     height: calc(100vh - 100px);
     padding: 0 20px;
