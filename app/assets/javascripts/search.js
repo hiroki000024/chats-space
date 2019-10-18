@@ -11,6 +11,13 @@ $(document).on('turbolinks:load', function() {
     user_list.append(html);
   }
 
+  function nohit() {
+    var html =  `<div class="chat-group-user clearfix">
+    <p class="chat-group-user__name">該当するユーザーがいません</p>
+  </div>`
+  user_list.append(html);
+  }
+
   function appendMember(name, user_id) {
     var html = `<div class='chat-group-user clearfix js-chat-member'>
                   <input name='group[user_ids][]' type='hidden' value='${user_id}'>
@@ -41,7 +48,7 @@ $(document).on('turbolinks:load', function() {
           });
         }
         else {
-          
+          nohit()
         }
       })
       .fail(function(){
