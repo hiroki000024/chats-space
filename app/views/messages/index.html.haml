@@ -7,15 +7,16 @@
       .left-header
         .left-header__title
           = @group.name
-        %ul.left-header__members
+        .left-header__members
           Member：
-          %li.member
-            - @group.users.uniq.each do |user|
+          .member
+            - @group.users.each do |user|
               = user.name
       .right-header
         .right-header__button
-          = link_to 'Edit',edit_group_path(@group)
-    .messages
+        = link_to edit_group_path(@group.id) do
+          Edit
+    .messages{id:@group.id}
       = render @messages
     .form
       = form_for [@group, @message] do |f|

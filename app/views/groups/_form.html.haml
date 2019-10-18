@@ -1,4 +1,4 @@
-= form_for group,{id: group.id} do |f|
+= form_for group do |f|
   - if group.errors.any?
     .chat-group-form__errors
       %h2= "#{group.errors.full_messages.count}件のエラーが発生しました。"
@@ -10,21 +10,29 @@
       = f.label :name, class: 'chat-group-form__label'
     .chat-group-form__field--right
       = f.text_field :name, class: 'chat__group_name chat-group-form__input', placeholder: 'グループ名を入力してください'
-  .chat-group-form__field.clearfix
-  #user-search-result
-    / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
+
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
-      %label.chat-group-form__label{:for => "chat_group_チャットメンバー"} チャットメンバー
+      %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバーを追加
+    .chat-group-form__field--right
+      .chat-group-form__search.clearfix
+        %input#user-search-field.chat-group-form__input{placeholder: "追加したいユーザー名を入力してください", type: "text"}/
+      #user-search-result
+
+  .chat-group-form__field.clearfix
+    .chat-group-form__field--left
+      %label.chat-group-form__label チャットメンバー
+    
     .chat-group-form__field--right
       #chat-group-users
-      - @group.users.each do |user|
-        #chat-group-user-8.chat-group-user.clearfix.js-chat-member
-          %input{name: 'group[user_ids][]', type: 'hidden', value: "#{ user.id }"}
-          %p.chat-group-user__name
-            = user.name
-        #member_append    
-          %p.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
+        - @group.users.each do |user|
+          #chat-group-user-8.chat-group-user.clearfix.js-chat-member
+            %input{name: 'group[user_ids][]', type: 'hidden', value: "#{ user.id }"}
+            %p.chat-group-user__name #{user.name}
+            - if user.id != current_user.id
+              %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
+
+        #member_search_result
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
